@@ -1,0 +1,153 @@
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            GreetingApp()
+        }
+    }
+}
+
+@Composable
+fun GreetingApp() {
+    MaterialTheme {
+        Surface {
+            // Votre interface utilisateur sera ici
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    GreetingApp()
+}@Composable
+fun GreetingApp() {
+
+ var name by remember { mutableStateOf("") }
+    MaterialTheme {
+        Surface {
+           
+
+
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    GreetingApp()
+}@Composable
+fun GreetingApp() {
+    var name by remember { mutableStateOf("") }
+
+    MaterialTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center
+            ) {
+                TextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text("Entrez votre nom") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+    }
+}@Composable
+fun GreetingApp() {
+    var name by remember { mutableStateOf("") }
+    var message by remember { mutableStateOf("Votre message apparaîtra ici.") }
+
+    MaterialTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center
+            ) {
+                TextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text("Entrez votre nom") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(onClick = {
+                    message = if (name.isNotBlank()) {
+                        "Bonjour, $name ! Bienvenue dans l'application."
+                    } else {
+                        "Veuillez entrer votre nom."
+                    }
+                }) {
+                    Text("Valider")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun GreetingApp() {
+    var name by remember { mutableStateOf("") }
+    var message by remember { mutableStateOf("Votre message apparaîtra ici.") }
+
+    MaterialTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center
+            ) {
+                TextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text("Entrez votre nom") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(onClick = {
+                    message = if (name.isNotBlank()) {
+                        "Bonjour, $name ! Bienvenue dans l'application."
+                    } else {
+                        "Veuillez entrer votre nom."
+                    }
+                }) {
+                    Text("Valider")
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = message,
+                    fontSize = 18.sp
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    GreetingApp()
+}
