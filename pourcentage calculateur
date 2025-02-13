@@ -1,0 +1,49 @@
+@Composable
+fun PercentageCalculatorApp() {
+    var amountInput by remember { mutableStateOf("") }
+    var percentageInput by remember { mutableStateOf("") }
+    val amount = amountInput.toDoubleOrNull() ?: 0.0
+    val percentage = percentageInput.toDoubleOrNull() ?: 0.0
+    val result = (amount * percentage) / 100
+
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Percentage Calculator", style = MaterialTheme.typography.h5)
+        Spacer(modifier = Modifier.height(16.dp))
+        EditNumberField(
+            value = amountInput,
+            onValueChange = { amountInput = it },
+            label = "Amount"
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        EditNumberField(
+            value = percentageInput,
+            onValueChange = { percentageInput = it },
+            label = "Percentage"
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = "Result: $result", style = MaterialTheme.typography.h6)
+    }
+}
+
+@Composable
+fun EditNumberField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    modifier: Modifier = Modifier
+) {
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        singleLine = true,
+        label = { Text(label) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        modifier = modifier.fillMaxWidth()
+    )
+}
