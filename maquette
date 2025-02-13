@@ -1,0 +1,66 @@
+package com.example.affirmations.model
+
+data class Country(
+    val name: String,
+    val capital: String,
+    val code: String,
+    val flagResourceId: Int
+)
+package com.example.affirmations.data
+
+import com.example.affirmations.model.Country
+import com.example.affirmations.R
+
+class DataSource {
+    fun loadCountries(): List<Country> {
+        return listOf(
+            Country("Congo", "Kinshasa", "CD", R.drawable.ic_flag_congo),
+            Country("France", "Paris", "FR", R.drawable.ic_flag_france),
+            Country("Germany", "Berlin", "DE", R.drawable.ic_flag_germany),
+            Country("Japan", "Tokyo", "JP", R.drawable.ic_flag_japan),
+            Country("United States", "Washington D.C.", "US", R.drawable.ic_flag_us)
+        )
+    }
+}
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.example.affirmations.model.Country
+
+@Composable
+fun CountryItem(country: Country) {
+    Row(modifier = Modifier.padding(16.dp)) {
+        Image(
+            painter = painterResource(country.flagResourceId),
+            contentDescription = "Flag of ${country.name}",
+            modifier = Modifier.padding(end = 16.dp)
+        )
+        Text(text = "${country.name} - ${country.capital}")
+    }
+}
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.Composable
+import com.example.affirmations.data.DataSource
+
+@Composable
+fun CountryList() {
+    val countries = DataSource().loadCountries()
+    LazyColumn {
+        items(countries) { country ->
+            CountryItem(country = country)
+        }
+    }
+}
+import androidx.compose.ui.tooling.preview.Preview
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewCountryList() {
+    CountryList()
+}
