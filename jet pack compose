@@ -1,0 +1,43 @@
+@Composable
+fun TipTimeLayout() {
+    Column(
+        modifier = Modifier
+            .statusBarsPadding()
+            .padding(horizontal = 40.dp)
+            .verticalScroll(rememberScrollState())
+            .safeDrawingPadding(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(R.string.calculate_tip),
+            modifier = Modifier
+                .padding(bottom = 16.dp, top = 40.dp)
+                .align(alignment = Alignment.Start)
+        )
+        Text(
+            text = stringResource(R.string.tip_amount, "$0.00"),
+            style = MaterialTheme.typography.displaySmall
+        )
+        Spacer(modifier = Modifier.height(150.dp))
+    }
+}
+
+
+private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
+   val tip = tipPercent / 100 * amount
+   return NumberFormat.getCurrencyInstance().format(tip)
+}
+
+Dans le bloc Surface() de la fonction onCreate(), la fonction TipTimeLayout() est appelée. La mise en page de l'application s'affiche sur l'appareil ou l'émulateur.
+Vous pouvez maintenant prévisualiser votre résultat
+
+Expliquez ce bout de code utilisé dans la fonction composable
+
+modifier = Modifier
+            .statusBarsPadding()
+            .padding(horizontal = 40.dp)
+            .verticalScroll(rememberScrollState())
+            .safeDrawingPadding(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
